@@ -1,168 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Zodiac Sign Finder</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac Sign Finder</title>
 
-    <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-        }
+<style>
+body{
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    font-family:Arial,sans-serif;
+}
 
-        .container {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            width: 320px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-        }
+.container{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+    text-align:center;
+}
 
-        input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 2px solid #6a11cb;
-            border-radius: 8px;
-        }
+h1{
+    color:#4b0082;
+}
 
-        button {
-            padding: 10px 20px;
-            background: #6a11cb;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
+p{
+    font-size:24px;
+    color:#e91e63;
+    font-weight:bold;
+}
+</style>
 
-        button:hover {
-            background: #2575fc;
-        }
-
-        #result {
-            margin-top: 15px;
-            font-weight: bold;
-            color: #2575fc;
-        }
-
-        @keyframes pop {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .show {
-            animation: pop 0.5s ease;
-        }
-    </style>
 </head>
-
 <body>
 
 <div class="container">
-
-    <h1>Zodiac Finder</h1>
-
-    <input type="number" id="month" placeholder="Enter Month (1-12)">
-    <input type="number" id="date" placeholder="Enter Date">
-
-    <button onclick="findZodiac()">Find Sign</button>
-
-    <h2 id="result"></h2>
-
-    <img id="zodiacImg" width="120" style="margin-top:10px;">
-
+    <h1>Zodiac Sign Finder</h1>
+    <p id="result"></p>
 </div>
-
-<!-- ONLINE SOUND (WORKING CLICK SOUND) -->
-<audio id="sound">
-    <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3" type="audio/mpeg">
-</audio>
 
 <script>
 
-function findZodiac() {
+let month = prompt("Enter your birth month (Example: August)");
 
-    let month = parseInt(document.getElementById("month").value);
-    let date = parseInt(document.getElementById("date").value);
-
-    let zodiac = "";
-    let image = "";
-
-    if ((month == 3 && date >= 21) || (month == 4 && date <= 19)) {
-        zodiac = "Aries ♈";
-        image = "https://i.imgur.com/5b6XK7m.png";
-    }
-    else if ((month == 4 && date >= 20) || (month == 5 && date <= 20)) {
-        zodiac = "Taurus ♉";
-        image = "https://i.imgur.com/3QZQZ3b.png";
-    }
-    else if ((month == 5 && date >= 21) || (month == 6 && date <= 20)) {
-        zodiac = "Gemini ♊";
-        image = "https://i.imgur.com/8k3Qz2L.png";
-    }
-    else if ((month == 6 && date >= 21) || (month == 7 && date <= 22)) {
-        zodiac = "Cancer ♋";
-        image = "https://i.imgur.com/1Q9Z1xF.png";
-    }
-    else if ((month == 7 && date >= 23) || (month == 8 && date <= 22)) {
-        zodiac = "Leo ♌";
-        image = "https://i.imgur.com/9vR7x0K.png";
-    }
-    else if ((month == 8 && date >= 23) || (month == 9 && date <= 22)) {
-        zodiac = "Virgo ♍";
-        image = "https://i.imgur.com/6kQx2cP.png";
-    }
-    else if ((month == 9 && date >= 23) || (month == 10 && date <= 22)) {
-        zodiac = "Libra ♎";
-        image = "https://i.imgur.com/2xQz8nD.png";
-    }
-    else if ((month == 10 && date >= 23) || (month == 11 && date <= 21)) {
-        zodiac = "Scorpio ♏";
-        image = "https://i.imgur.com/7mQz1vA.png";
-    }
-    else if ((month == 11 && date >= 22) || (month == 12 && date <= 21)) {
-        zodiac = "Sagittarius ♐";
-        image = "https://i.imgur.com/4nQz9kS.png";
-    }
-    else if ((month == 12 && date >= 22) || (month == 1 && date <= 19)) {
-        zodiac = "Capricorn ♑";
-        image = "https://i.imgur.com/9pQz3xB.png";
-    }
-    else if ((month == 1 && date >= 20) || (month == 2 && date <= 18)) {
-        zodiac = "Aquarius ♒";
-        image = "https://i.imgur.com/1xQz6vC.png";
-    }
-    else if ((month == 2 && date >= 19) || (month == 3 && date <= 20)) {
-        zodiac = "Pisces ♓";
-        image = "https://i.imgur.com/5xQz2pM.png";
-    }
-    else {
-        zodiac = "Invalid Date";
-        image = "";
-    }
-
-    // SHOW TEXT
-    let result = document.getElementById("result");
-    result.innerHTML = "Your Zodiac Sign is: " + zodiac;
-    result.classList.add("show");
-
-    // SHOW IMAGE
-    document.getElementById("zodiacImg").src = image;
-
-    // SOUND FIX (online + click safe)
-    let sound = document.getElementById("sound");
-    sound.currentTime = 0;
-    sound.play().catch(() => {
-        console.log("Sound blocked by browser");
-    });
+if(month){
+    month = month.toLowerCase().trim();
 }
+
+let date = parseInt(prompt("Enter your birth date (1-31)"));
+
+let zodiac = "";
+
+if ((month == "march" && date >= 21 && date <= 31) || (month == "april" && date >= 1 && date <= 19))
+    zodiac = "♈ Aries";
+else if ((month == "april" && date >= 20 && date <= 30) || (month == "may" && date >= 1 && date <= 20))
+    zodiac = "♉ Taurus";
+else if ((month == "may" && date >= 21 && date <= 31) || (month == "june" && date >= 1 && date <= 20))
+    zodiac = "♊ Gemini";
+else if ((month == "june" && date >= 21 && date <= 30) || (month == "july" && date >= 1 && date <= 22))
+    zodiac = "♋ Cancer";
+else if ((month == "july" && date >= 23 && date <= 31) || (month == "august" && date >= 1 && date <= 22))
+    zodiac = "♌ Leo";
+else if ((month == "august" && date >= 23 && date <= 31) || (month == "september" && date >= 1 && date <= 22))
+    zodiac = "♍ Virgo";
+else if ((month == "september" && date >= 23 && date <= 30) || (month == "october" && date >= 1 && date <= 22))
+    zodiac = "♎ Libra";
+else if ((month == "october" && date >= 23 && date <= 31) || (month == "november" && date >= 1 && date <= 21))
+    zodiac = "♏ Scorpio";
+else if ((month == "november" && date >= 22 && date <= 30) || (month == "december" && date >= 1 && date <= 21))
+    zodiac = "♐ Sagittarius";
+else if ((month == "december" && date >= 22 && date <= 31) || (month == "january" && date >= 1 && date <= 19))
+    zodiac = "♑ Capricorn";
+else if ((month == "january" && date >= 20 && date <= 31) || (month == "february" && date >= 1 && date <= 18))
+    zodiac = "♒ Aquarius";
+else if ((month == "february" && date >= 19 && date <= 29) || (month == "march" && date >= 1 && date <= 20))
+    zodiac = "♓ Pisces";
+else
+    zodiac = "Invalid month or date!";
+
+document.getElementById("result").innerHTML = "Your Zodiac Sign is <br><br>" + zodiac;
 
 </script>
 
 </body>
 </html>
+   
+
+    
