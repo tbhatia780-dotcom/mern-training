@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Login Using DOM</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f0f2f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:360px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.logo{
+    color:#1877f2;
+    font-size:45px;
+    margin-bottom:20px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:6px;
+    font-size:17px;
+    cursor:pointer;
+}
+
+.login{
+    background:#1877f2;
+    color:white;
+}
+
+.login:hover{
+    background:#166fe5;
+}
+
+.create{
+    background:#42b72a;
+    color:white;
+}
+
+.create:hover{
+    background:#36a420;
+}
+
+a{
+    display:block;
+    margin:15px;
+    text-decoration:none;
+    color:#1877f2;
+}
+
+hr{
+    margin:20px 0;
+}
+
+#message{
+    margin-top:15px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<div id="root"></div>
+
+<script>
+
+// Root Element
+let root = document.getElementById("root");
+
+// Container
+let container = document.createElement("div");
+container.className = "container";
+
+// Logo
+let logo = document.createElement("h1");
+logo.className = "logo";
+logo.innerText = "facebook";
+
+// Email Input
+let email = document.createElement("input");
+email.type = "text";
+email.placeholder = "Email address or phone number";
+
+// Password Input
+let password = document.createElement("input");
+password.type = "password";
+password.placeholder = "Password";
+
+// Login Button
+let loginBtn = document.createElement("button");
+loginBtn.className = "login";
+loginBtn.innerText = "Log In";
+
+// Forgot Password Link
+let forgot = document.createElement("a");
+forgot.href = "#";
+forgot.innerText = "Forgotten Password?";
+
+// Line
+let line = document.createElement("hr");
+
+// Create Account Button
+let createBtn = document.createElement("button");
+createBtn.className = "create";
+createBtn.innerText = "Create New Account";
+
+// Message
+let message = document.createElement("p");
+message.id = "message";
+
+// Login Event
+loginBtn.onclick = function(){
+
+    if(email.value==="" || password.value===""){
+        message.style.color="red";
+        message.innerText="Please fill all fields!";
+    }
+    else{
+        message.style.color="green";
+        message.innerText="Login Successful!";
+    }
+
+}
+
+// Append Elements
+container.appendChild(logo);
+container.appendChild(email);
+container.appendChild(password);
+container.appendChild(loginBtn);
+container.appendChild(forgot);
+container.appendChild(line);
+container.appendChild(createBtn);
+container.appendChild(message);
+
+root.appendChild(container);
+
+</script>
+
+</body>
+</html>
